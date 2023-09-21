@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model Viewer</title>
+    <title>3D Model Viewer Web App (dev)</title>
     <style>
         body {
             margin: 0;
@@ -29,29 +29,30 @@
         const engine = new BABYLON.Engine(canvas, true);
 
         const createScene = async () => {
-            const scene = new BABYLON.Scene(engine);
-            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 4, 3, new BABYLON.Vector3(0, 1, 0), scene);
-            camera.attachControl(canvas, true);
+    const scene = new BABYLON.Scene(engine);
+    const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1, 0), scene);
+    camera.attachControl(canvas, true);
 
-            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
-            const loader = new BABYLON.AssetsManager(scene);
-            const meshTask = loader.addMeshTask("modelTask", "", "./1135018.gltf");
-            
-            meshTask.onSuccess = (task) => {
-                task.loadedMeshes.forEach((mesh) => {
-                   
-                });
-            };
+    const loader = new BABYLON.AssetsManager(scene);
+    const meshTask = loader.addMeshTask("modelTask", "", "./1135018.gltf");
+    
+    meshTask.onSuccess = (task) => {
+        task.loadedMeshes.forEach((mesh) => {
+            // You can add materials or customize the mesh here if needed
+        });
+    };
 
-            loader.onFinish = () => {
-                engine.runRenderLoop(() => {
-                    scene.render();
-                });
-            };
+    loader.onFinish = () => {
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
+    };
 
-            loader.load();
-        };
+    loader.load();
+};
+
 
         createScene();
 
