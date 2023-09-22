@@ -8,19 +8,30 @@
         body {
             margin: 0;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-color: #f0f0f0;
         }
         canvas {
             width: 100%;
-            height: 100%;
+            height: calc(100vh - 60px); 
+            display: block;
+        }
+        .top-bar {
+            background-color: #575d75;
+            padding: 25px;
+            text-align: center;
+        }
+        .top-bar a {
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <a href="index.html">Return to Selection</a>
+    </div>
     <canvas id="canvas"></canvas>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
@@ -29,30 +40,29 @@
         const engine = new BABYLON.Engine(canvas, true);
 
         const createScene = async () => {
-    const scene = new BABYLON.Scene(engine);
-    const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1, 0), scene);
-    camera.attachControl(canvas, true);
+            const scene = new BABYLON.Scene(engine);
+            const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1, 0), scene);
+            camera.attachControl(canvas, true);
 
-    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
+            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
-    const loader = new BABYLON.AssetsManager(scene);
-    const meshTask = loader.addMeshTask("modelTask", "", "./1135018.gltf");
-    
-    meshTask.onSuccess = (task) => {
-        task.loadedMeshes.forEach((mesh) => {
-            // You can add materials or customize the mesh here if needed
-        });
-    };
+            const loader = new BABYLON.AssetsManager(scene);
+            const meshTask = loader.addMeshTask("modelTask", "", "./1135018.gltf");
 
-    loader.onFinish = () => {
-        engine.runRenderLoop(() => {
-            scene.render();
-        });
-    };
+            meshTask.onSuccess = (task) => {
+                task.loadedMeshes.forEach((mesh) => {
 
-    loader.load();
-};
+                });
+            };
 
+            loader.onFinish = () => {
+                engine.runRenderLoop(() => {
+                    scene.render();
+                });
+            };
+
+            loader.load();
+        };
 
         createScene();
 
