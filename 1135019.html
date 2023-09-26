@@ -9,53 +9,30 @@
 </head>
 <body>
     <div class="top-bar">
+        <div class="back-arrow">
+            <a href="index.html">←</a>
+
+        </div>
         <a href="index.html">Return to Selection</a>
     </div>
 
 
-
-    
-
-
-
-
-    <div class="colors-container">
-        <label>
-            <input type="checkbox" id="redCheckbox" value="red"> Red
-        </label>
-        <label>
-            <input type="checkbox" id="yellowCheckbox" value="yellow"> Yellow
-        </label>
-        <label>
-            <input type="checkbox" id="greenCheckbox" value="green"> Green
-        </label>
-        <label>
-            <input type="checkbox" id="blueCheckbox" value="blue"> Blue
-        </label>
-    </div>
-    
-
-
-
     <div class="options-container">
         <ul>
-            <li><a>Select Position</a>
+            <li><a>Select</a>
                 <ul id="submenu">
-                    <li><a href="">Supine</a></li>
-                    <li><a href="">Cross Leg</a></li>
+                    <li><a href="">Supine All</a></li>
+                    <li><a href="">Supine Red+Yellow</a></li>
+                    <li><a href="">Cross Leg All</a></li>
+                    <li><a href="">Cross Leg Red+Yellow</a></li>
                     <li><a href="">Hip Flexion</a></li>
+                    <li><a href="">Hip Flexion Red+Yellow</a></li>
                 </ul>
             </li>
         </ul>
     </div>
     
     
-
-
-
-
-
-
 
     <canvas id="canvas"></canvas>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
@@ -70,7 +47,7 @@
             camera.attachControl(canvas, true);
 
             camera.lowerRadiusLimit = 3;
-            camera.upperRadiusLimit = 25;
+            camera.upperRadiusLimit = 15;
 
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
