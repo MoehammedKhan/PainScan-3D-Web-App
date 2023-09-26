@@ -4,34 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Model Viewer Web App (dev)</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #f0f0f0;
-        }
-        canvas {
-            width: 100%;
-            height: calc(100vh - 60px); 
-            display: block;
-        }
-        .top-bar {
-            background-color: #575d75;
-            padding: 25px;
-            text-align: center;
-        }
-        .top-bar a {
-            color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="rin.css">
+
 </head>
 <body>
     <div class="top-bar">
         <a href="index.html">Return to Selection</a>
     </div>
+
+
+
+    
+
+
+
+
+    <div class="colors-container">
+        <label>
+            <input type="checkbox" id="redCheckbox" value="red"> Red
+        </label>
+        <label>
+            <input type="checkbox" id="yellowCheckbox" value="yellow"> Yellow
+        </label>
+        <label>
+            <input type="checkbox" id="greenCheckbox" value="green"> Green
+        </label>
+        <label>
+            <input type="checkbox" id="blueCheckbox" value="blue"> Blue
+        </label>
+    </div>
+    
+
+
+
+    <div class="options-container">
+        <ul>
+            <li><a>Select Position</a>
+                <ul id="submenu">
+                    <li><a href="">Supine</a></li>
+                    <li><a href="">Cross Leg</a></li>
+                    <li><a href="">Hip Flexion</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    
+
+
+
+
+
+
+
     <canvas id="canvas"></canvas>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
@@ -44,10 +69,13 @@
             const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1, 0), scene);
             camera.attachControl(canvas, true);
 
+            camera.lowerRadiusLimit = 3;
+            camera.upperRadiusLimit = 25;
+
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
             const loader = new BABYLON.AssetsManager(scene);
-            const meshTask = loader.addMeshTask("modelTask", "", "./1135018.gltf");
+            const meshTask = loader.addMeshTask("modelTask", "", "./1135018 Files/1135018-layingdown-all.gltf");
 
             meshTask.onSuccess = (task) => {
                 task.loadedMeshes.forEach((mesh) => {
@@ -61,11 +89,19 @@
                 });
             };
 
+            loader.onFinish = () => {
+                engine.runRenderLoop(() => {
+                    scene.render();
+                });
+            };
+
+
+
+            
             loader.load();
         };
 
         createScene();
-
         window.addEventListener("resize", () => {
             engine.resize();
         });
