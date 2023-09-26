@@ -43,13 +43,19 @@
 
         const createScene = async () => {
             const scene = new BABYLON.Scene(engine);
-            const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1, 0), scene);
+            const camera = new BABYLON.ArcRotateCamera("camera", 1.5, 1.5, 50, new BABYLON.Vector3(0, 1.5, 0), scene);
             camera.attachControl(canvas, true);
 
             camera.lowerRadiusLimit = 3;
-            camera.upperRadiusLimit = 15;
+            camera.upperRadiusLimit = 10;
 
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
+            
+            const pointLight1 = new BABYLON.PointLight("pointLight1", new BABYLON.Vector3(5, 5, 0), scene);
+            pointLight1.intensity = 7; // Adjust the intensity as needed
+            const pointLight2 = new BABYLON.PointLight("pointLight2", new BABYLON.Vector3(-5, 5, 0), scene);
+            pointLight2.intensity = 7; // Adjust the intensity as needed
+
 
             const loader = new BABYLON.AssetsManager(scene);
             const meshTask = loader.addMeshTask("modelTask", "", "./1135018 Files/1135018-layingdown-all.gltf");
