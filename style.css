@@ -1,12 +1,10 @@
-
 body, h1, ul {
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #747171;
+    background-color: #7c7c7c;
     background: linear-gradient(to top, #b4b4b4, #6d6c6c);
     text-align: center;
     display: flex;
@@ -15,7 +13,6 @@ body {
     align-items: center;
     min-height: 100vh; 
 }
-
 .container{
     background-color: #999999;
     background: linear-gradient(to top, #b4b4b4, #6d6c6c);
@@ -25,40 +22,32 @@ body {
     overflow: hidden;
     width: 500px;
     height: auto;
-
 }
-
 h1 {
     font-size: 36px;
     color: #f0d318;
     margin: 32px 0;
 }
-
 ul {
     list-style-type: none;
     padding: 0;
 }
-
 li {
     margin: 10px 0;
 }
-
 a {
     text-decoration: none;
-    color: #616060;
+    color: #474747;
     font-weight: bold;
     font-size: 24px;
     transition: color 0.3s, transform 0.3s;
-    display: inline-block; /* Add this to make the transform property work */
+    display: inline-block;
 }
-
-a:hover {
+.container a:hover {
     color: #f0d318;
-    transform: translateY(5px); /* Move the text up on hover */
-    animation: floatAnimation 0.3s 1 forwards; /* Add a floating animation */
+    transform: translateY(5px);
+    animation: floatAnimation 0.3s 1 forwards;
 }
-
-/* Define a floating animation */
 @keyframes floatAnimation {
     0% {
         transform: translateY(2.5px);
@@ -67,12 +56,30 @@ a:hover {
         transform: translateY(-2.5px);
     }
 }
-
-
-
-
-
-
-
-
-/*to bottom, #da1212, #f0d318); for line 10. Other color options
+.top-bar {
+    background-color: #7c7c7c;
+    padding: 10px;
+    text-align: left;
+    width: auto;
+    float: left;
+    height: 39px;
+}
+.top-bar a {
+    color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #7c7c7c;
+}
+.images{
+   height: auto;
+   width: auto;
+}
+.image{
+    background-color: #999999;
+    border-radius:10px;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
